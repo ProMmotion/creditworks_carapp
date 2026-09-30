@@ -58,6 +58,14 @@ Open your browser at `http://localhost:5173`.
 
 To run the automated test suite for domain validation, range logic, and boundary checks:
 
+#### API Tests
+
 ```bash
-dotnet test
+dotnet test tests
+```
+
+#### Client Tests
+
+```bash
+npm run test:unit
 ```
