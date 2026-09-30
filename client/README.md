@@ -29,7 +29,6 @@ The frontend for CreditWorks CarApp, a vehicle inventory management application.
 
 - Node.js `^22.18.0` or `>=24.12.0` (see `package.json` `engines`).
 - npm.
-- A compatible backend API. The client reads the API base URL from `VUE_APP_API_URL`.
 
 ## Getting started
 

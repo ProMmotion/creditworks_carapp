@@ -19,7 +19,6 @@ This project is a web application developed for the CreditWorks technical assess
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/)
 - [Node.js](https://nodejs.org/) (v18+ recommended)
-- Git
 
 ### 1. Database Configuration & Setup
 
@@ -27,7 +26,7 @@ The project uses SQLite, so no standalone database engine installation is requir
 
 1. Navigate to the API directory:
    ```bash
-   cd src/CreditWorks.Api
+   cd api
    ```
 2. Apply database migrations and seed initial data (Manufacturers & Categories):
    ```bash
@@ -47,13 +46,13 @@ The API will start at `http://localhost:5288`.
 
 #### Frontend (Vue 3 Client)
 
-1. Open a new terminal and navigate to the client directory:
-   ```bash
-   cd client
-   npm i
-   npm run dev
-   ```
-2. Open your browser at the URL provided by Vite (typically `http://localhost:5173`).
+```bash
+cd client
+npm ci
+npm run dev
+```
+
+Open your browser at `http://localhost:5173`.
 
 ### 3. Running Automated Tests
 
