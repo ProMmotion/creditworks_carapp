@@ -1,0 +1,20 @@
+[class^='icon-'] {
+  display: inline-block;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  background-color: currentColor;
+  width: 32px;
+  height: 32px;
+}
+.icon-1k {
+  -webkit-mask: url('./1k.svg') no-repeat 50% 50%;
+  mask: url('./1k.svg') no-repeat 50% 50%;
+}
+.icon-2k {
+  -webkit-mask: url('./2k.svg') no-repeat 50% 50%;
+  mask: url('./2k.svg') no-repeat 50% 50%;
+}
+.icon-3k {
+  -webkit-mask: url('./3k.svg') no-repeat 50% 50%;
+  mask: url('./3k.svg') no-repeat 50% 50%;
+}
