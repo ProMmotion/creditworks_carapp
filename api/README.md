@@ -105,20 +105,20 @@ Consequently, the API currently does not provide functional ownership creation o
 
 Controllers use `[Route("api/[controller]")]`. With the configured lowercase URL option, the expected route prefixes are lowercase (`api/cars`, etc.). All controller responses are declared as JSON-producing.
 
-| Method | Route | Behavior |
-|---|---|---|
-| `GET` | `/api/cars` | Lists cars with optional filters, pagination, and sorting. Returns `{ items, total }` using the paginated domain result. |
-| `POST` | `/api/cars` | Creates a car from brand/model IDs, plate, VIN, weight, year, and owner. Returns `{ id }` on success or `{ error }` on failure. Owner is currently ignored by persistence. |
-| `GET` | `/api/brands` | Returns all brands. |
-| `POST` | `/api/brands` | Creates a brand from `name` and `imgUrl`; returns `{ id }` or `{ error }`. |
-| `GET` | `/api/models` | Returns all models. |
-| `GET` | `/api/models/{brandId?}` | Returns models, optionally filtered by brand ID. Because the route parameter is optional, the base `/api/models` route also lists all models. |
-| `POST` | `/api/models` | Creates a model from `brandId` and `name`; returns `{ id }` or `{ error }`. |
-| `GET` | `/api/categories` | Returns all categories and their filters. |
-| `POST` | `/api/categories` | Creates a category with required name and filters; icon is optional. Returns `{ id }` or `{ error }`. |
-| `PATCH` | `/api/categories/{id}` | Applies supplied category fields to an existing category. Returns the updated category or `{ error }`. |
-| `DELETE` | `/api/categories/{id}` | Deletes a category. Returns `204 No Content` on success or `{ error }`. |
-| `GET` | `/api/ownerships` | Stub endpoint; currently returns an empty `200 OK`. |
+| Method   | Route                    | Behavior                                                                                                                                                                   |
+| -------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET`    | `/api/cars`              | Lists cars with optional filters, pagination, and sorting. Returns `{ items, total }` using the paginated domain result.                                                   |
+| `POST`   | `/api/cars`              | Creates a car from brand/model IDs, plate, VIN, weight, year, and owner. Returns `{ id }` on success or `{ error }` on failure. Owner is currently ignored by persistence. |
+| `GET`    | `/api/brands`            | Returns all brands.                                                                                                                                                        |
+| `POST`   | `/api/brands`            | Creates a brand from `name` and `imgUrl`; returns `{ id }` or `{ error }`.                                                                                                 |
+| `GET`    | `/api/models`            | Returns all models.                                                                                                                                                        |
+| `GET`    | `/api/models/{brandId?}` | Returns models, optionally filtered by brand ID. Because the route parameter is optional, the base `/api/models` route also lists all models.                              |
+| `POST`   | `/api/models`            | Creates a model from `brandId` and `name`; returns `{ id }` or `{ error }`.                                                                                                |
+| `GET`    | `/api/categories`        | Returns all categories and their filters.                                                                                                                                  |
+| `POST`   | `/api/categories`        | Creates a category with required name and filters; icon is optional. Returns `{ id }` or `{ error }`.                                                                      |
+| `PATCH`  | `/api/categories/{id}`   | Applies supplied category fields to an existing category. Returns the updated category or `{ error }`.                                                                     |
+| `DELETE` | `/api/categories/{id}`   | Deletes a category. Returns `204 No Content` on success or `{ error }`.                                                                                                    |
+| `GET`    | `/api/ownerships`        | Stub endpoint; currently returns an empty `200 OK`.                                                                                                                        |
 
 ### Car query parameters
 
@@ -137,12 +137,11 @@ The filter predicates are combined as AND conditions. Range lower bounds are exc
 `CarAppContext` in `src/data/db.cs` defines these sets/tables:
 
 - `Brands`
-- `Models`
 - `Cars`
 - `Categories`
+- `Models`
+- `Owners`
 - `Ownerships`
-
-Explicit relationships connect `Model.BrandId` to a brand, and `Car.BrandId` / `Car.ModelId` to brand and model. Category filters are persisted as JSON text. Ownership currently has no configured relationship in `OnModelCreating`.
 
 Startup initialization in `src/data/seed.cs` ensures the database exists, runs migrations, and inserts starter data only when the Brands table is empty. It inserts five brands, one model per brand, and three weight categories. If any brand already exists, the seed method returns without checking whether models or categories are independently missing.
 
@@ -174,7 +173,6 @@ ASP.NET Core's `[ApiController]` attribute enables automatic model-state validat
 - Swagger UI and the OpenAPI document are mapped only in Development.
 - The CORS policy allows `http://localhost:5173` and any header/method. Add the deployed frontend origin when deploying the API.
 - HTTPS redirection is currently commented out.
-- `api/api.http` contains an example request for `/weatherforecast/`, but no WeatherForecast controller is present in the source shown; treat that request as a stale template unless the endpoint is added elsewhere.
 
 ## 10. Known implementation caveats
 
@@ -205,11 +203,3 @@ Build without launching the server:
 ```sh
 dotnet build
 ```
-
-## 12. Useful extension points
-
-- Implement ownership flows under `src/controllers`, `src/managers`, and `src/services`; persist the owner together with a newly created car.
-- Add authentication, authorization, and production CORS configuration before deployment.
-- Add tests for car filtering/sorting/pagination and category range boundaries.
-- Add explicit API response contracts and consistent HTTP status codes (for example, `201 Created` for creation and `404 Not Found` when a category does not exist).
-- Consider async query methods and structured logging for persistence errors.
