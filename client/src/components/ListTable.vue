@@ -22,27 +22,6 @@ const getSortIcon = (field: string) => {
   if (sortBy !== field) return '↕'
   return sortOrder === 'Asc' ? '↑' : '↓'
 }
-
-// Formatage du poids à 2 décimales
-const formatWeight = (weight) => {
-  if (weight === null || weight === undefined) return '-'
-  return (
-    Number(weight).toLocaleString('fr-FR', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }) + ' kg'
-  )
-}
-
-// Classe CSS personnalisée selon la catégorie
-const getCategoryClass = (categoryName) => {
-  if (!categoryName) return 'badge-neutral'
-  const name = categoryName.toLowerCase()
-  if (name.includes('light')) return 'badge-light'
-  if (name.includes('medium')) return 'badge-medium'
-  if (name.includes('heavy')) return 'badge-heavy'
-  return 'badge-neutral'
-}
 </script>
 
 <template>

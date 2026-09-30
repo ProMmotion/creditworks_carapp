@@ -3,7 +3,6 @@ import { useBrandStore } from '@/stores/brands'
 import { computed, onBeforeMount } from 'vue'
 import AppSelect from './AppSelect.vue'
 import { useBrandRequests } from '@/requests/brands'
-import type { Brand } from '@/models/brand'
 
 defineProps<{
   required?: boolean

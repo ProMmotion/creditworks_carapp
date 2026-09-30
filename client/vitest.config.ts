@@ -5,6 +5,11 @@ import viteConfig from './vite.config.ts'
 export default mergeConfig(
   viteConfig,
   defineConfig({
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
+    },
     test: {
       environment: 'jsdom',
       exclude: [...configDefaults.exclude, 'e2e/**'],

@@ -1,4 +1,4 @@
-import axios, { AxiosHeaders, type AxiosResponse } from 'axios'
+import axios, { type AxiosResponse } from 'axios'
 import { computed } from 'vue'
 
 export function useApiRequests(prefix?: string) {

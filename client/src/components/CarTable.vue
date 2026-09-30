@@ -15,7 +15,6 @@ import { isInRange } from '@/utils/Range'
 import AppBadge from './AppBadge.vue'
 import { useOwnershipStore } from '@/stores/ownerships'
 import { useOwnerStore } from '@/stores/owners'
-import CategoryForm from './CategoryForm.vue'
 import CategoryManagement from './CategoryManagement.vue'
 
 const categoryStore = useCategoryStore()
