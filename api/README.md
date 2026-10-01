@@ -203,3 +203,11 @@ Build without launching the server:
 ```sh
 dotnet build
 ```
+
+Run the unit tests from the `api` directory:
+
+```sh
+dotnet test tests/tests.csproj
+```
+
+The test project keeps controller, manager, and service unit tests in separate files. Coverage includes controller response mapping, manager business/result handling, and SQLite-backed service operations.
